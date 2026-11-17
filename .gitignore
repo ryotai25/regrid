@@ -1,0 +1,13 @@
+node_modules/
+
+# 開発用Foundryコンテナのデータ（compose.yaml）
+.foundry/
+# ライセンスキーなど（雛形は .env.example）
+.env
+# 各自の環境だけの追加マウント
+compose.override.yaml
+
+# FoundryVTT本体ソースへの参照（APIを読むため。zipから展開する）
+foundry/
+
+CLAUDE.local.md

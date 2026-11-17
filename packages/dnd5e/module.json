@@ -1,0 +1,25 @@
+{
+  "id": "regrid-dnd5e",
+  "title": "Regrid for D&D 5e",
+  "description": "Converts dnd5e actors, items and descriptions between feet and meters.",
+  "version": "0.0.0",
+  "authors": [{ "name": "Ryotai" }],
+  "compatibility": { "minimum": "14", "verified": "14" },
+  "relationships": {
+    "systems": [{ "id": "dnd5e", "type": "system", "compatibility": { "minimum": "6.1" } }],
+    "recommends": [{ "id": "regrid", "type": "module" }]
+  },
+  "esmodules": ["scripts/main.mjs"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "ja", "name": "日本語", "path": "lang/ja.json" }
+  ],
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "json", "hbs"],
+      "paths": ["lang", "styles", "templates"]
+    }
+  },
+  "url": "https://github.com/ryotai25/regrid",
+  "license": "MIT"
+}

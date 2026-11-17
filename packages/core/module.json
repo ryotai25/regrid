@@ -1,0 +1,21 @@
+{
+  "id": "regrid",
+  "title": "Regrid",
+  "description": "Converts the distance units of scenes (grid, levels, tokens, lights, sounds) between feet and meters. System agnostic.",
+  "version": "0.0.0",
+  "authors": [{ "name": "Ryotai" }],
+  "compatibility": { "minimum": "14", "verified": "14" },
+  "esmodules": ["scripts/main.mjs"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" },
+    { "lang": "ja", "name": "日本語", "path": "lang/ja.json" }
+  ],
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "json", "hbs"],
+      "paths": ["lang", "styles", "templates"]
+    }
+  },
+  "url": "https://github.com/ryotai25/regrid",
+  "license": "MIT"
+}

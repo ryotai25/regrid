@@ -1,0 +1,29 @@
+# 開発用のFoundryVTT本体。使い方: README.md「開発環境」
+#
+# 本体のzipはイメージに含まれない。Node配布版を FOUNDRY_CACHE（既定 ~/.cache/foundry）に
+# foundryvtt-<FOUNDRY_VERSION>.zip の名前で置く。初回起動時にコンテナの中で展開される。
+#
+# 本体を上げるときは image のタグと FOUNDRY_VERSION を一緒に書き換える。
+services:
+  foundry:
+    image: felddy/foundryvtt:14.370.0
+    # ライセンスの署名はホスト名に結びつく。変えると再署名（EULAの同意）が要る
+    hostname: regrid-dev
+    ports:
+      - "${FVTT_PORT:-30014}:30000"
+    environment:
+      FOUNDRY_VERSION: "14.370"
+      CONTAINER_CACHE: /cache
+      FOUNDRY_LICENSE_KEY: ${FOUNDRY_LICENSE_KEY:-}
+      FOUNDRY_WORLD: ${FVTT_WORLD:-regrid-test}
+      FOUNDRY_HOT_RELOAD: "true"
+      FOUNDRY_TELEMETRY: "false"
+      # 共有フォルダ越しだとホスト側の変更がinotifyで届かず、ホットリロードが効かない。
+      # イメージは NODE_* 以外の環境変数を本体に渡さないので、前置きのスクリプトで切り替える
+      NODE_OPTIONS: --require=/opt/use-polling.cjs
+    volumes:
+      - ./.foundry/data:/data
+      - ${FOUNDRY_CACHE:-~/.cache/foundry}:/cache
+      - ./packages/core:/data/Data/modules/regrid
+      - ./packages/dnd5e:/data/Data/modules/regrid-dnd5e
+      - ./docker/use-polling.cjs:/opt/use-polling.cjs:ro
